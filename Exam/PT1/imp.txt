@@ -1,0 +1,18 @@
+Marking Scheme:
+10 * 1 (MCQ, Fill in the blanks, Output)
+5 * 2 ()
+5 * 3 ()
+1 * 5 ()
+
+Important programs:
+Armstrong
+factorial
+sum of factorial
+fibonacci
+palindrome (num, str)
+reverse list
+
+Other stuff:
+All methods for string, list, dictionary, tuple
+Output based question
+Find error and rewrite
