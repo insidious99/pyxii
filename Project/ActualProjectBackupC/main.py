@@ -4,6 +4,7 @@ from database import save_game, load_game
 
 # Initialize Pygame
 pygame.init()
+pygame.mixer.init()
 
 # Load saved high score
 high_score_data = load_game()
@@ -40,6 +41,8 @@ elite_enemy_img = pygame.transform.scale(elite_enemy_img, (80, 80))
 
 # Load sounds
 bullet_sound = pygame.mixer.Sound("assets/sounds/bullet.mp3")
+pygame.mixer.music.load("assets/sounds/background.mp3")
+pygame.mixer.music.set_volume(0.4)  # Adjust volume (0.0 to 1.0)
 
 # Load font
 font = pygame.font.Font(None, 36)
@@ -63,6 +66,7 @@ def reset_game():
 
 # Initialize game state
 reset_game()
+pygame.mixer.music.play(-1)  # -1 makes the music loop forever
 
 # Game Loop
 running = True
@@ -141,6 +145,7 @@ while running:
     
         if lives <= 0:
             game_over = True
+            pygame.mixer.music.fadeout(500)
             if score > high_score:
                 high_score = score
                 save_game(high_score)
@@ -174,8 +179,11 @@ while running:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:  # Restart the game
                     reset_game()
+                    pygame.mixer.music.play(-1)
                 elif event.key == pygame.K_q:  # Quit the game
                     running = False
     
     pygame.display.flip()
+pygame.mixer.music.stop()
 pygame.quit()
+
